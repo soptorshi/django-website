@@ -81,8 +81,6 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-def cart(request):
-    return render(request,'cart.html')
 
 def shop(request):
     if request.method == 'POST':
@@ -100,4 +98,14 @@ def icecream(request):
         flavour    = request.POST.get('flavour')
         icecream = Icecream(name = name,price = price,net_weight = net_weight,flavour = flavour)
         icecream.save()
+
+def cart(request):
+    # if request.method == "POST":
+    #     name    = request.POST.get('name')
+    #     price   = request.POST.get('price')
+    #     net_weight   = request.POST.get('net_weight')
+    #     flavour    = request.POST.get('flavour')
+    #     cart_item = Cart_item(name = name,price = price,net_weight = net_weight,flavour = flavour)
+    #     cart_item.save()
+    return render(request,'cart.html')
         
