@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Shop{% endblock title %}
+{% block body %}
+    <form action="{% url 'shop' %}" method = 'POST' class='d-flex'>
+        {% csrf_token %}
+        <div class="input-group" style="margin:auto;padding:20px">
+            <input type="search" name="searched" class="form-control rounded" placeholder="Search ice creams" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary">Search</button>
+        </div>
+    </form>
+    {% if searched %}
+        <center><h2>You've searched for '{{searched}}'</h2></center>
+        <br>
+        {% for icecream in icecreams %}
+            {% if icecreams is not None %}
+                <center>{{icecream}} Rs.{{icecream.price}}, {{icecream.net_weight}}g</center>
+                <br>
+            {% else %}
+                <center>'{{searched}}' not found</center>
+                <br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <center> <h2>Search for your ice creams here.</h2></center>
+    {% endif %}
+       
+{% endblock body %}
